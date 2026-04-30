@@ -1,0 +1,41 @@
+Project 3 - VSM Cosine Retrieval Evaluation
+===========================================
+
+Corpus     : Financial Times 1991 (FT911) - 5,368 documents
+Cut-off    : top 50 ranked documents per query
+Weighting  : lnc.ltc (Manning et al. Fig 6.14)
+            documents -> (1 + log10 tf)
+            queries   -> (1 + log10 tf) * log10(N / df)
+Stopwords  : SMART stopword list (504 entries)
+Stemmer    : Porter (1980)
+
+'Relevant (corpus)' is the number of documents judged relevant in the qrels
+file that are actually present in the indexed corpus (FT911 only).  Recall
+is computed against this in-corpus relevant set so it reflects what is
+achievable given the available document collection.
+
+Topic  Setting                Rel (qrels)  Rel (corpus)  TP@10   P@10  TP@K     P@K     R@K
+-------------------------------------------------------------------------------------------
+352    Title only                      52             2      0  0.000     0  0.0000  0.0000
+352    Title + Description             52             2      0  0.000     0  0.0000  0.0000
+352    Title + Narrative               52             2      0  0.000     0  0.0000  0.0000
+
+353    Title only                      22            10      6  0.600     7  0.1400  0.7000
+353    Title + Description             22            10      6  0.600     7  0.1400  0.7000
+353    Title + Narrative               22            10      7  0.700    10  0.2000  1.0000
+
+354    Title only                      25             9      5  0.500     6  0.1200  0.6667
+354    Title + Description             25             9      4  0.400     5  0.1000  0.5556
+354    Title + Narrative               25             9      5  0.500     5  0.1000  0.5556
+
+359    Title only                       6             1      0  0.000     1  0.0200  1.0000
+359    Title + Description              6             1      0  0.000     0  0.0000  0.0000
+359    Title + Narrative                6             1      0  0.000     0  0.0000  0.0000
+
+Macro-averages over the four topics
+-----------------------------------
+Setting                 Avg P@10   Avg P@K   Avg R@K
+----------------------------------------------------
+Title only                0.2750    0.0700    0.5917
+Title + Description       0.2500    0.0600    0.3139
+Title + Narrative         0.3000    0.0750    0.3889
